@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app # Monta o diretório atual do host no /app do contêiner para desenvolvimento
+    depends_on:
+      - db
+    environment:
+      # Variáveis de ambiente que a aplicação FastAPI precisa
+      # Elas serão passadas para o contêiner do 'app'
+      # Alternativamente, você pode carregar do .env no main.py, mas é bom tê-las aqui para o docker-compose
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db # Usa o nome do serviço do BD no docker-compose
+      DB_PORT: ${DB_PORT}
+      GEMINI_API_KEY: ${GEMINI_API_KEY} # A chave da API Gemini
+
+  db:
+    image: postgres:14-alpine # Imagem oficial do PostgreSQL. 'alpine' é mais leve.
+    ports:
+      - "5432:5432" # Opcional: expõe a porta do DB para acesso externo (ex: pgAdmin)
+    environment:
+      # Variáveis de ambiente para configurar o PostgreSQL
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persistência dos dados do banco
+      # O volume 'db_data' é criado e gerenciado pelo Docker,
+      # garantindo que seus dados não sejam perdidos ao parar/remover o contêiner.
+
+volumes:
+  db_data: # Declara o volume para persistência do banco de dados

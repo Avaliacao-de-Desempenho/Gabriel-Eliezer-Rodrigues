@@ -1,0 +1,8 @@
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+python-dotenv==1.0.0
+psycopg2-binary==2.9.9
+google-generativeai==0.7.0
+python-multipart==0.0.9 # Necessário para upload de arquivos no FastAPI
+PyPDF2==3.0.1 # Para extrair texto de PDFs antes de enviar ao Gemini, se necessário (ou enviar o PDF como imagem)
+Pillow==10.3.0 # Para manipular imagens, caso precise converter antes de enviar ao Gemini
