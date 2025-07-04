@@ -7,15 +7,16 @@
     - criar uma interface simples para upload imagem ✅
     - Fazer a integração com a API do Gemini ✅
     - Criar e Configurar Dockerfile e docker-compose.yml ✅
-    - Documentação do projeto![image](https://github.com/user-attachments/assets/80c27c04-a8e6-4120-a9d7-8f5a59df81a2)
-    - Testar aplicação.![image](https://github.com/user-attachments/assets/90b6c8fe-0f22-4c4f-bd9c-bd1bafd7a3ab)
+    - Configurar banco de Dados PostgreeSQL✅
+    - Documentação do projeto!✅
+    - Testar aplicação.✅
 
 
 - **Resultado Esperado**
     - Criar a API com a integração com o Gemini, receber imagens e obter um retorno do Gemini.
       - **02/07** - Inicialmente estou criando a estrutura do projeto e ja estruturando ele para trabalhar no docker, pretendo que o projeto esteja aceitando imagens e pdf e obtendo um retorno o Gemini até o fim da semana.
-        - **Evolução**: 45%
-        - **TODO**: Desenvolver a estrutura do projeto, criar a API FastpAPI, receber imagem, integrar com gemini e receber um retorno. 
+        - **Evolução**: 100%
+        - **TODO**: Desenvolver a estrutura do projeto, criar a API FastpAPI, receber imagem, integrar com gemini, receber um retorno e configurar o banco de dados para salvar e persistir os dados.
 
 - **Dúvidas do Aluno/Impedimentos Encontrados**
     - \<DÚVIDAS\>
