@@ -1,38 +1,40 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/app # Monta o diretório atual do host no /app do contêiner para desenvolvimento
-    depends_on:
-      - db
-    environment:
-      # Variáveis de ambiente que a aplicação FastAPI precisa
-      # Elas serão passadas para o contêiner do 'app'
-      # Alternativamente, você pode carregar do .env no main.py, mas é bom tê-las aqui para o docker-compose
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_HOST: db # Usa o nome do serviço do BD no docker-compose
-      DB_PORT: ${DB_PORT}
-      GEMINI_API_KEY: ${GEMINI_API_KEY} # A chave da API Gemini
-
   db:
-    image: postgres:14-alpine # Imagem oficial do PostgreSQL. 'alpine' é mais leve.
-    ports:
-      - "5432:5432" # Opcional: expõe a porta do DB para acesso externo (ex: pgAdmin)
-    environment:
-      # Variáveis de ambiente para configurar o PostgreSQL
+    image: postgres:16-alpine # Versão leve do PostgreSQL
+    container_name: postgres_db
+    environment: # Variáveis de ambiente para o banco de dados
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
-      - db_data:/var/lib/postgresql/data # Persistência dos dados do banco
-      # O volume 'db_data' é criado e gerenciado pelo Docker,
-      # garantindo que seus dados não sejam perdidos ao parar/remover o contêiner.
+      - postgres_data:/var/lib/postgresql/data # Volume nomeado para persistência de dados
+    ports:
+      - "${DB_PORT}:5432" # Mapeia a porta do host para a porta do container
+    healthcheck: # Garante que o DB esteja pronto antes da API tentar conectar
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s # Espera inicial antes de começar a testar
+
+  api:
+    build: . # Constrói a imagem a partir do Dockerfile na pasta atual
+    container_name: fastapi_invoice_api
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload # Comando para iniciar a API
+    environment: # Variáveis de ambiente para a API, puxadas do .env
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db # Nome do serviço do banco de dados no Docker Compose
+      DB_PORT: 5432 # Porta interna do container do DB
+    ports:
+      - "8000:8000" # Mapeia a porta do host para a porta do container da API
+    depends_on:
+      db:
+        condition: service_healthy # Inicia a API somente se o DB estiver saudável
 
 volumes:
-  db_data: # Declara o volume para persistência do banco de dados
+  postgres_data: # Definição do volume nomeado
