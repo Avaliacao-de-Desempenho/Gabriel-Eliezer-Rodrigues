@@ -1,19 +1,20 @@
-# Usa uma imagem base Python oficial. 'slim-buster' é menor que a 'full'
-FROM python:3.12-slim
+# Usa uma imagem oficial do Python como base
+FROM python:3.11-slim-bookworm
 
-# Define o diretório de trabalho dentro do contêiner
+# Define o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia o arquivo de dependências e instala as bibliotecas Python
+# Copia o arquivo requirements.txt para o diretório de trabalho
 COPY requirements.txt .
+
+# Instala as dependências Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia o restante do código da aplicação para o contêiner
+# Copia o restante do código da aplicação para o container
 COPY . .
 
-# Expõe a porta que o Uvicorn vai usar
+# Expõe a porta que a aplicação irá rodar
 EXPOSE 8000
 
-# Comando para iniciar a aplicação com Uvicorn
-# --host 0.0.0.0 permite que a aplicação seja acessível de fora do contêiner
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Comando padrão para rodar a aplicação (pode ser sobrescrito pelo docker-compose)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
