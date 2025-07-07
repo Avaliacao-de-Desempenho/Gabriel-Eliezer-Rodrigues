@@ -7,13 +7,13 @@
     - criar uma interface simples para upload imagem ✅
     - Fazer a integração com a API do Gemini ✅
     - Criar e Configurar Dockerfile e docker-compose.yml ✅
-    - Documentação do projeto![image](https://github.com/user-attachments/assets/80c27c04-a8e6-4120-a9d7-8f5a59df81a2)
-    - Testar aplicação.![image](https://github.com/user-attachments/assets/90b6c8fe-0f22-4c4f-bd9c-bd1bafd7a3ab)
+    - Documentação do projeto!✅
+    - Testar aplicação.!✅
 
 
 - **Resultado Esperado**
     - Criar a API com a integração com o Gemini, receber imagens e obter um retorno do Gemini.
-      - **02/07** - Inicialmente estou criando a estrutura do projeto e ja estruturando ele para trabalhar no docker, pretendo que o projeto esteja aceitando imagens e pdf e obtendo um retorno o Gemini até o fim da semana.
+    - Inicialmente estou criando a estrutura do projeto e ja estruturando ele para trabalhar no docker, pretendo que o projeto esteja aceitando imagens e pdf e obtendo um retorno o Gemini até o fim da semana.
         - **Evolução**: 45%
         - **TODO**: Desenvolver a estrutura do projeto, criar a API FastpAPI, receber imagem, integrar com gemini e receber um retorno. 
 
@@ -26,15 +26,18 @@
 - **Respostas das Questões**
     - \<RESPOSTAS\>
 
-## SEMANA 2: \<NOME DO PROJETO\>
-### Objetivo: \<OBJETIVO DA SEMANA\>
+## SEMANA 2: Analizador de documentos via IA
+### Objetivo: Verificação do Projeto.
 **07/07 - 11/07**
 - **Backlog Semanal**
-    - \<QUEBRAR O OBJETIVO DA SEMANA EM PARTES MENORES\>
+    - Verificar a conexão com o banco de dados.
+    - Verificar a API.
+    - Verificar a Documentação do Projeto.
+    - Verificar o andamento dos entregáveis do Projeto.
 
 - **Resultado Esperado**
-    - \<QUAL ENTREGÁVEL SERÁ PRODUZIDO QUANDO O OBJETIVO FOR ALCANÇADO (FINAL DA SEMANA)\>
-    - Evolução: \<0% - 100%\>
+    - Entregar todo o Projeto e trabalhar em melhorias.
+    - **Evolução**: 100% - 110%.
 
 - **Dúvidas do Aluno/Impedimentos Encontrados**
     - \<DÚVIDAS\>
