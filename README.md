@@ -4,7 +4,6 @@
 - **Backlog Semanal**
     - Estruturar arquivos do Projeto✅
     - Organizar ferramentas que serão utilizadas ✅
-    - criar uma interface simples para upload imagem ✅
     - Fazer a integração com a API do Gemini ✅
     - Criar e Configurar Dockerfile e docker-compose.yml ✅
     - Documentação do projeto!✅
@@ -14,7 +13,7 @@
 - **Resultado Esperado**
     - Criar a API com a integração com o Gemini, receber imagens e obter um retorno do Gemini.
     - Inicialmente estou criando a estrutura do projeto e ja estruturando ele para trabalhar no docker, pretendo que o projeto esteja aceitando imagens e pdf e obtendo um retorno o Gemini até o fim da semana.
-        - **Evolução**: 45%
+        - **Evolução**: 100%
         - **TODO**: Desenvolver a estrutura do projeto, criar a API FastpAPI, receber imagem, integrar com gemini e receber um retorno. 
 
 - **Dúvidas do Aluno/Impedimentos Encontrados**
